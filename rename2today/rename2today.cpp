@@ -11,8 +11,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     // 引数より対象ファイル名の取得
     auto arg = std::wstring(lpCmdLine);
+
+    std::wsmatch m;
+    auto re_dq = std::wregex(L"\"(.+)\"");
+    if (std::regex_match(arg, m, re_dq)) {
+        arg = m[1];
+    }
+
     using std::endl;
-    auto target = std::filesystem::path(arg);
+    auto target = std::filesystem::path(arg).lexically_normal();
     std::wstring fname = target.filename().c_str();
 
     // ファイルの存在確認
@@ -35,7 +42,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     auto parent = target.parent_path();
 
     // 対象ファイル名に日付が含まれているかを確認
-    std::wsmatch m;
     auto re = std::wregex(L"((?:20)?[012][0-9])-(0\\d|11|12)-(0[1-9]|[12]\\d|30|31)");
     if (std::regex_search(fname, m, re)) {
         auto rep = std::regex_replace(fname, re, date_str);
@@ -51,8 +57,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // もともと日付が同じ場合も同様になるので，リビジョンのインクリメントに化ける．
     if (std::filesystem::exists(dest)) {
         auto re_rev = std::wregex(L"_[rR](\\d+)$");
-        std::wstring stem = target.stem().c_str();
-        auto ext = target.extension();
+        std::wstring stem = dest.stem().c_str();
+        auto ext = dest.extension();
         int rev = 1;
         std::filesystem::path base;
         if (std::regex_search(stem, m, re_rev)){
