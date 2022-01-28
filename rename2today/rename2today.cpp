@@ -63,7 +63,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         std::filesystem::path base;
         if (std::regex_search(stem, m, re_rev)){
             // リビジョン番号を取得し1増やす
-            rev = atoi(utf8_encode(* m.begin()).c_str())+1;
+            std::string num = utf8_encode(m[1]);
+            rev = std::stoi(num) + 1;
             base = std::regex_replace(stem, re_rev, L"");
         }
         else {
