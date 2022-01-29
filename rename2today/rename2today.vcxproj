@@ -143,20 +143,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
     <ClInclude Include="rename2today.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="rename2today.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="rename2today.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="rename2today.ico" />
-    <Image Include="small.ico" />
+    <ClCompile Include="string_convert.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
