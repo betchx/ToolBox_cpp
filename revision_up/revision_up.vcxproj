@@ -143,7 +143,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\rename2today\string_convert.cpp" />
     <ClCompile Include="revision_up.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rename2today\string_convert.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
