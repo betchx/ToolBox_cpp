@@ -1,7 +1,6 @@
 ﻿// rename2today.cpp : アプリケーションのエントリ ポイントを定義します。
 //
 
-#include "framework.h"
 #include "rename2today.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -93,3 +92,4 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     return 0;
 }
+
